@@ -1,12 +1,12 @@
 import Todo from './Todo';
 
-const TodoList = ({todos}) => {
+const TodoList = ({todos, setTodos}) => {
     return (
         <ul>
             {
                 todos.map((a, i) => {
                     return(
-                        <Todo todos={a} key={i}/>
+                        <Todo todos={a} key={i} setTodos={setTodos}/>
                     )
                 })
             }
