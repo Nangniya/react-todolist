@@ -3,10 +3,11 @@ import {useState} from 'react';
 import TodoNav from './components/TodoNav'
 import TodoList from './components/TodoList'
 import TodoAdd from './components/TodoAdd'
+import data from './components/data';
 
 function App() {
   
-  const [todos, setTodos] = useState(['할일1', '할일2', '할일3']); 
+  const [todos, setTodos] = useState(data); 
 
   return (
     <div className="App">

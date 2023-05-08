@@ -4,9 +4,9 @@ const TodoList = ({todos, setTodos}) => {
     return (
         <ul>
             {
-                todos.map((a, i) => {
+                todos.map((todo) => {
                     return(
-                        <Todo todos={a} key={i} setTodos={setTodos}/>
+                        <Todo todo={todo} key={todo.id} setTodos={setTodos}/>
                     )
                 })
             }
