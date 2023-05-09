@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
+import { BiTrash } from "react-icons/bi";
 
 //li태그 점 없애기
 const StyledLi = styled.li`
@@ -85,7 +86,9 @@ const Todo = ({ todo, setTodos }) => {
 
       <div className="btns">
         <button onClick={setEdit}>수정</button>
-        <button onClick={deleteTodo}>삭제</button>
+        <button onClick={deleteTodo}>
+          <BiTrash />
+        </button>
       </div>
     </StyledLi>
   );
