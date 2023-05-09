@@ -13,7 +13,7 @@ const TodoAdd = ({ todos, setTodos }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="TodoAdd" onSubmit={onSubmit}>
       <input ref={newTodoRef} placeholder="할 일을 입력하세요" />
       <button type="submit">+</button>
     </form>

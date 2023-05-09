@@ -4,11 +4,18 @@ import styled from "styled-components";
 //li태그 점 없애기
 const StyledLi = styled.li`
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  font-size: 20px;
 `;
 //조건부 스타일 적용
 const StyledSpan = styled.span`
   text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
   color: ${(props) => (props.checked ? "gray" : "inherit")};
+  text-align: left;
+  margin-left: 10px;
+  width: 70%;
 `;
 // 각 할일 컴포넌트
 const Todo = ({ todo, setTodos }) => {
@@ -55,7 +62,7 @@ const Todo = ({ todo, setTodos }) => {
   // HTML
   return (
     <StyledLi>
-      <span onClick={checkTodo}>{!todo.checked ? "🥚" : "🐣"}</span>
+      <span onClick={checkTodo}>{!todo.checked ? "🥚 " : "🐣 "}</span>
       {!todo.edit ? (
         <StyledSpan onClick={checkTodo} checked={todo.checked}>
           {todo.text}
@@ -65,10 +72,14 @@ const Todo = ({ todo, setTodos }) => {
           ref={editRef}
           defaultValue={todo.text}
           onBlur={handleBlur}
+          onKeyDown={handleBlur}
         ></input>
       )}
-      <button onClick={setEdit}>수정</button>
-      <button onClick={deleteTodo}>삭제</button>
+
+      <div className="btns">
+        <button onClick={setEdit}>수정</button>
+        <button onClick={deleteTodo}>삭제</button>
+      </div>
     </StyledLi>
   );
 };

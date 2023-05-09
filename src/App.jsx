@@ -1,6 +1,5 @@
 import "./App.css";
 import { useState } from "react";
-import TodoNav from "./components/TodoNav";
 import TodoList from "./components/TodoList";
 import TodoAdd from "./components/TodoAdd";
 import data from "./components/data";
@@ -10,9 +9,11 @@ function App() {
 
   return (
     <div className="App">
-      <TodoAdd todos={todos} setTodos={setTodos} />
-      <TodoNav />
-      <TodoList todos={todos} setTodos={setTodos} />
+      <div className="Wrapper">
+        <h4>Today's TodoList</h4>
+        <TodoAdd todos={todos} setTodos={setTodos} />
+        <TodoList todos={todos} setTodos={setTodos} />
+      </div>
     </div>
   );
 }
