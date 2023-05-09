@@ -6,7 +6,12 @@ const TodoAdd = ({ todos, setTodos }) => {
     e.preventDefault();
     const newId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 0;
     const newTodoText = newTodoRef.current.value;
-    const newTodo = { id: newId, text: newTodoText, checked: false };
+    const newTodo = {
+      id: newId,
+      text: newTodoText,
+      checked: false,
+      edit: false,
+    };
     setTodos((prev) => [...prev, newTodo]);
     newTodoRef.current.value = "";
     console.log(todos);
