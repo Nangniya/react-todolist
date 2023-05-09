@@ -1,17 +1,22 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 
+//li태그 점 없애기
 const StyledLi = styled.li`
   list-style: none;
 `;
+//조건부 스타일 적용
 const StyledSpan = styled.span`
   text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
-`; //조건부 스타일 적용
-
+  color: ${(props) => (props.checked ? "gray" : "inherit")};
+`;
+// 각 할일 컴포넌트
 const Todo = ({ todo, setTodos }) => {
+  //삭제 함수
   const deleteTodo = () => {
     setTodos((prev) => prev.filter((item) => item.id !== todo.id));
   };
+  //수정 함수
   const editRef = useRef();
   const handleBlur = () => {
     setTodos((prev) => {
@@ -36,6 +41,7 @@ const Todo = ({ todo, setTodos }) => {
       })
     );
   };
+  //체크박스
   const checkTodo = () => {
     setTodos((prev) =>
       prev.map((item) => {
@@ -46,11 +52,14 @@ const Todo = ({ todo, setTodos }) => {
       })
     );
   };
+  // HTML
   return (
     <StyledLi>
       <span onClick={checkTodo}>{!todo.checked ? "🥚" : "🐣"}</span>
       {!todo.edit ? (
-        <StyledSpan checked={todo.checked}>{todo.text}</StyledSpan>
+        <StyledSpan onClick={checkTodo} checked={todo.checked}>
+          {todo.text}
+        </StyledSpan>
       ) : (
         <input
           ref={editRef}
