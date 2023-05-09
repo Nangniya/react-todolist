@@ -1,3 +1,44 @@
+* {
+  box-sizing: border-box;
+}
 .App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Wrapper {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 600px;
+}
+.TodoAdd {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+}
+.TodoAdd input {
+  width: 360px;
+  font-size: 20px;
+}
+.add-btn {
+  width: 40px;
+  font-size: 24px;
+  font-weight: bold;
+}
+ul {
+  width: 100%;
+  padding: 0;
+  height: 520px;
+}
+h4 {
+  font-size: 30px;
+  width: 100%;
   text-align: center;
+  margin: 20px 0;
 }
