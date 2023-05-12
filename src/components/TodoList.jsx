@@ -23,7 +23,16 @@ const TodoList = ({ todos, setTodos }) => {
           return <Todo todo={todo} key={todo.id} setTodos={setTodos} />;
         })}
       </ul>
-      <ClearAllBtn onClick={() => setTodos([])}>모두 삭제</ClearAllBtn>
+      <ClearAllBtn
+        onClick={() => {
+          // eslint-disable-next-line no-restricted-globals
+          if (confirm("모두 삭제하시겠습니까?")) {
+            setTodos([]);
+          }
+        }}
+      >
+        모두 삭제
+      </ClearAllBtn>
     </>
   );
 };

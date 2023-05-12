@@ -12,7 +12,7 @@ const StyledLi = styled.li`
   align-items: center;
   height: 50px;
   font-size: 20px;
-  border-bottom: 2px solid gray;
+  border-bottom: 1px solid gray;
 `;
 //조건부 스타일 적용
 const StyledSpan = styled.span`
@@ -89,7 +89,7 @@ const Todo = ({ todo, setTodos }) => {
       )}
 
       <Btns>
-        <Button onClick={setEdit}>
+        <Button color="error" onClick={setEdit}>
           <FaPencilAlt />
         </Button>
         <Button color="error" onClick={deleteTodo}>
