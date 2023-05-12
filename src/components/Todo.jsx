@@ -92,18 +92,7 @@ const Todo = ({ todo, setTodos }) => {
         <Button onClick={setEdit}>
           <FaPencilAlt />
         </Button>
-        <Button
-          sx={{
-            fontSize: "24px",
-            borderRadius: "50%",
-            padding: "0",
-            boxSizing: "border-box",
-            width: "30px",
-            height: "30px",
-          }}
-          color="error"
-          onClick={deleteTodo}
-        >
+        <Button color="error" onClick={deleteTodo}>
           <BiTrash />
         </Button>
       </Btns>
@@ -114,5 +103,12 @@ const Todo = ({ todo, setTodos }) => {
 const Btns = styled.div`
   display: flex;
   justify-content: space-between;
+  Button {
+    min-width: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    border-radius: 50%;
+  }
 `;
 export default Todo;

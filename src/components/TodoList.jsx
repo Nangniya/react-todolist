@@ -3,6 +3,16 @@ import styled from "styled-components";
 
 const ClearAllBtn = styled.button`
   margin-left: auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: lightcoral;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  font-weight: bold;
+  &:hover {
+    background-color: #d86c6c;
+  }
 `;
 
 const TodoList = ({ todos, setTodos }) => {
