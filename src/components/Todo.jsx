@@ -1,14 +1,18 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { BiTrash } from "react-icons/bi";
+import { FaPencilAlt } from "react-icons/fa";
+import { Button } from "@mui/material";
 
 //li태그 점 없애기
 const StyledLi = styled.li`
   list-style: none;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 50px;
   font-size: 20px;
+  border-bottom: 2px solid gray;
 `;
 //조건부 스타일 적용
 const StyledSpan = styled.span`
@@ -16,7 +20,7 @@ const StyledSpan = styled.span`
   color: ${(props) => (props.checked ? "gray" : "inherit")};
   text-align: left;
   margin-left: 10px;
-  width: 70%;
+  flex: 1;
 `;
 const StyledInput = styled.input`
   width: 70%;
@@ -84,14 +88,31 @@ const Todo = ({ todo, setTodos }) => {
         />
       )}
 
-      <div className="btns">
-        <button onClick={setEdit}>수정</button>
-        <button onClick={deleteTodo}>
+      <Btns>
+        <Button onClick={setEdit}>
+          <FaPencilAlt />
+        </Button>
+        <Button
+          sx={{
+            fontSize: "24px",
+            borderRadius: "50%",
+            padding: "0",
+            boxSizing: "border-box",
+            width: "30px",
+            height: "30px",
+          }}
+          color="error"
+          onClick={deleteTodo}
+        >
           <BiTrash />
-        </button>
-      </div>
+        </Button>
+      </Btns>
     </StyledLi>
   );
 };
 
+const Btns = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export default Todo;
