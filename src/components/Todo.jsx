@@ -1,43 +1,31 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { BiTrash } from "react-icons/bi";
 import { FaPencilAlt } from "react-icons/fa";
 import { Button } from "@mui/material";
 
-//li태그 점 없애기
-const StyledLi = styled.li`
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-  font-size: 20px;
-  border-bottom: 1px solid gray;
-`;
-//조건부 스타일 적용
-const StyledSpan = styled.span`
-  text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
-  color: ${(props) => (props.checked ? "gray" : "inherit")};
-  text-align: left;
-  margin-left: 10px;
-  flex: 1;
-`;
-const StyledInput = styled.input`
-  width: 70%;
-  height: 100%;
-  font-size: 20px;
-  &:focus {
-    outline: none;
-  }
-`;
 // 각 할일 컴포넌트
 const Todo = ({ todo, setTodos }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const editRef = useRef();
+
+  // 수정모드
+  useEffect(() => {
+    if (isEditing && editRef.current) {
+      editRef.current.focus();
+    }
+  }, [isEditing]);
+
+  const setEdit = () => {
+    setIsEditing((prevIsEditing) => !prevIsEditing);
+  };
+
   //삭제 함수
   const deleteTodo = () => {
     setTodos((prev) => prev.filter((item) => item.id !== todo.id));
   };
+
   //수정 함수
-  const editRef = useRef();
   const modifyTodo = () => {
     setTodos((prev) => {
       const newTodos = prev.map((item) => {
@@ -51,16 +39,7 @@ const Todo = ({ todo, setTodos }) => {
     editRef.current.blur(); // blur 이벤트 호출
     setEdit();
   };
-  const setEdit = () => {
-    setTodos((prev) =>
-      prev.map((item) => {
-        if (item.id === todo.id) {
-          return { ...item, edit: !item.edit };
-        }
-        return item;
-      })
-    );
-  };
+
   //체크박스
   const checkTodo = () => {
     setTodos((prev) =>
@@ -76,7 +55,7 @@ const Todo = ({ todo, setTodos }) => {
   return (
     <StyledLi>
       <span onClick={checkTodo}>{!todo.checked ? "🥚 " : "🐣 "}</span>
-      {!todo.edit ? (
+      {!isEditing ? (
         <StyledSpan onClick={checkTodo} checked={todo.checked}>
           {todo.text}
         </StyledSpan>
@@ -111,4 +90,34 @@ const Btns = styled.div`
     border-radius: 50%;
   }
 `;
+
+//li태그 점 없애기
+const StyledLi = styled.li`
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  font-size: 20px;
+  border-bottom: 1px solid grey;
+`;
+
+//조건부 스타일 적용
+const StyledSpan = styled.span`
+  text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
+  color: ${(props) => (props.checked ? "gray" : "inherit")};
+  text-align: left;
+  margin-left: 10px;
+  flex: 1;
+`;
+
+const StyledInput = styled.input`
+  width: 70%;
+  height: 100%;
+  font-size: 20px;
+  &:focus {
+    outline: none;
+  }
+`;
+
 export default Todo;

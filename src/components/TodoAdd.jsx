@@ -10,7 +10,6 @@ const TodoAdd = ({ todos, setTodos }) => {
       id: newId,
       text: newTodoText,
       checked: false,
-      edit: false,
     };
     setTodos((prev) => [...prev, newTodo]);
     newTodoRef.current.value = "";
