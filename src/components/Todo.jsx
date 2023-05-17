@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { BiTrash } from "react-icons/bi";
-import { FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt, FaCheck } from "react-icons/fa";
 import { Button } from "@mui/material";
 
 // 각 할일 컴포넌트
@@ -68,9 +68,15 @@ const Todo = ({ todo, setTodos }) => {
       )}
 
       <Btns>
-        <Button color="error" onClick={setEdit}>
-          <FaPencilAlt />
-        </Button>
+        {!isEditing ? (
+          <Button color="error" onClick={setEdit}>
+            <FaPencilAlt />
+          </Button>
+        ) : (
+          <Button color="error">
+            <FaCheck />
+          </Button>
+        )}
         <Button color="error" onClick={deleteTodo}>
           <BiTrash />
         </Button>
@@ -115,6 +121,8 @@ const StyledInput = styled.input`
   width: 70%;
   height: 100%;
   font-size: 20px;
+  border: solid 2px grey;
+  background-color: rgb(255, 215, 220);
   &:focus {
     outline: none;
   }
