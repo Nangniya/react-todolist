@@ -1,13 +1,19 @@
-import React, { useRef, useState, useEffect } from "react";
-import styled from "styled-components";
-import { BiTrash } from "react-icons/bi";
-import { FaPencilAlt, FaCheck } from "react-icons/fa";
-import { Button } from "@mui/material";
+import React, { useRef, useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { BiTrash } from 'react-icons/bi';
+import { FaPencilAlt, FaCheck } from 'react-icons/fa';
+import { Button } from '@mui/material';
+import { TodoType } from './data';
+
+interface TodoProps {
+  todo: TodoType;
+  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+}
 
 // 각 할일 컴포넌트
-const Todo = ({ todo, setTodos }) => {
+const Todo = ({ todo, setTodos }: TodoProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const editRef = useRef();
+  const editRef = useRef(null);
 
   // 수정모드
   useEffect(() => {
@@ -54,7 +60,7 @@ const Todo = ({ todo, setTodos }) => {
   // HTML
   return (
     <StyledLi>
-      <span onClick={checkTodo}>{!todo.checked ? "🥚 " : "🐣 "}</span>
+      <span onClick={checkTodo}>{!todo.checked ? '🥚 ' : '🐣 '}</span>
       {!isEditing ? (
         <StyledSpan onClick={checkTodo} checked={todo.checked}>
           {todo.text}
@@ -69,15 +75,15 @@ const Todo = ({ todo, setTodos }) => {
 
       <Btns>
         {!isEditing ? (
-          <Button color="error" onClick={setEdit}>
+          <Button color='error' onClick={setEdit}>
             <FaPencilAlt />
           </Button>
         ) : (
-          <Button color="error">
+          <Button color='error'>
             <FaCheck />
           </Button>
         )}
-        <Button color="error" onClick={deleteTodo}>
+        <Button color='error' onClick={deleteTodo}>
           <BiTrash />
         </Button>
       </Btns>
@@ -108,10 +114,13 @@ const StyledLi = styled.li`
   border-bottom: 1px solid grey;
 `;
 
+interface StyledSpanProps {
+  checked: boolean;
+}
 //조건부 스타일 적용
-const StyledSpan = styled.span`
-  text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
-  color: ${(props) => (props.checked ? "gray" : "inherit")};
+const StyledSpan = styled.span<StyledSpanProps>`
+  text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
+  color: ${(props) => (props.checked ? 'gray' : 'inherit')};
   text-align: left;
   margin-left: 10px;
   flex: 1;
