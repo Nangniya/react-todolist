@@ -1,5 +1,6 @@
-import Todo from "./Todo";
-import styled from "styled-components";
+import Todo from './Todo';
+import styled from 'styled-components';
+import { TodoType } from './data';
 
 const ClearAllBtn = styled.button`
   margin-left: auto;
@@ -15,10 +16,15 @@ const ClearAllBtn = styled.button`
   }
 `;
 
-const TodoList = ({ todos, setTodos }) => {
+interface TodoListProps {
+  todos: TodoType[];
+  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+}
+
+const TodoList = ({ todos, setTodos }: TodoListProps) => {
   const onClick = () => {
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("모두 삭제하시겠습니까?")) {
+    if (confirm('모두 삭제하시겠습니까?')) {
       setTodos([]);
     }
   };
