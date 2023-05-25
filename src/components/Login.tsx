@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRef } from "react";
 import user, { UserType } from "./user";
-import loginChecker from "../utils";
+import { loginChecker } from "../utils";
 
 const Form = styled.div`
   display: flex;
