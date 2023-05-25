@@ -3,6 +3,7 @@ import { useState } from "react";
 import TodoList from "./components/TodoList";
 import TodoAdd from "./components/TodoAdd";
 import Login from "./components/Login";
+import TodoNav from "./components/TodoNav";
 import data, { TodoType } from "./components/data";
 import { useRecoilState } from "recoil";
 import { todoAtom } from "./recoil/todoAtom";
@@ -26,15 +27,18 @@ const TodoApp = () => {
   }
 
   return (
-    <div className="App">
-      <div className="Wrapper">
-        <h4>Today's TodoList</h4>
-        <TodoAdd
-        // todos={todos} setTodos={setTodos}
-        />
-        <TodoList todos={todos} setTodos={setTodos} />
+    <>
+      <TodoNav />
+      <div className="App">
+        <div className="Wrapper">
+          <h4>Today's TodoList</h4>
+          <TodoAdd
+          // todos={todos} setTodos={setTodos}
+          />
+          <TodoList todos={todos} setTodos={setTodos} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default App;
