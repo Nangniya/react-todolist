@@ -21,6 +21,10 @@ const TodoApp = () => {
   const [todos, setTodos] = useState<TodoType[]>(data);
   const [todos2, setTodos2] = useRecoilState(todoAtom);
 
+  if (!localStorage.getItem("token")) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="App">
       <div className="Wrapper">

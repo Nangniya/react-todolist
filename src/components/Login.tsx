@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRef } from "react";
 import user, { UserType } from "./user";
-import { useNavigate } from "react-router-dom";
+import loginChecker from "../utils";
 
 const Form = styled.div`
   display: flex;
@@ -24,19 +24,11 @@ const Form = styled.div`
 const Login = () => {
   const idRef = useRef(null);
   const pwdRef = useRef(null);
-  let navigate = useNavigate();
   const onSubmit = (e: any) => {
     e.preventDefault();
     const idInput = idRef.current.value;
     const pwdInput = pwdRef.current.value;
-    if (idInput === user.id && pwdInput === user.pwd) {
-      localStorage.setItem("token", "로그인");
-      navigate("/");
-    } else if (idInput !== user.id && pwdInput === user.pwd) {
-      alert("아이디가 틀렸습니다.");
-    } else if (idInput === user.id && pwdInput !== user.pwd) {
-      alert("비밀번호가 틀렸습니다.");
-    } else alert("아이디와 비밀번호가 일치하지 않습니다.");
+    loginChecker(idInput, pwdInput);
   };
 
   return (
